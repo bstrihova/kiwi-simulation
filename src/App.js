@@ -2,6 +2,8 @@ import React from "react";
 import "./App.css";
 import SearchResults from "./components/SearchResults";
 import Loader from "./components/Loader";
+import FlyFrom from "./components/FlyFrom";
+
 
 const App = () => {
   // const [searchValue, setSearchValue] = React.useState();
@@ -19,19 +21,25 @@ const App = () => {
 
   React.useEffect(() => {
     fetchData();
-  });
+  }, [flyFrom]);
 
   const fetchData = async () => {
     const response = await fetch(
       `https://api.skypicker.com/flights?flyFrom=${flyFrom}&to=${flyTo}&dateFrom=${dateFrom}&dateTo=${dateTo}&partner=test`
     );
     const data = await response.json();
-    setSearchResults(data.data.slice(0, 5));
+    data && data.data && setSearchResults(data.data);
     console.log(searchResults);
+  };
+
+  const handleFlyFrom = (e) => {
+    setFlyFrom(e.target.value);
   };
 
   return (
     <div className="App">
+        <FlyFrom handleFlyFrom={handleFlyFrom}/>
+
       {!searchResults.length ? (
         <Loader />
       ) : (

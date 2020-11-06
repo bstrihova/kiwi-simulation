@@ -1,11 +1,13 @@
 import React from 'react'
 
-function FlyFrom() {
+const FlyFrom = (props) => {
+    const { handleFlyFrom } = props;
+
     return (
         <div>
             <label for="flyFrom">Choose a departure:</label>
 
-            <select name="flyFrom">
+            <select name="flyFrom" onChange={handleFlyFrom}>
                 <option value="Valencia">Valencia</option>
                 <option value="Barcelona">Barcelona</option>
                 <option value="Madrid">Madrid</option>
