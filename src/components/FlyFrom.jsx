@@ -1,18 +1,17 @@
 import React from 'react'
 
 const FlyFrom = (props) => {
-    const { handleFlyFrom } = props;
+    const { handleFlyFrom, flyFrom } = props;
 
     return (
         <div>
-            <label for="flyFrom">Choose a departure:</label>
+            <label htmlFor="flyFrom">Depart from:</label>
 
-            <select name="flyFrom" onChange={handleFlyFrom}>
-                <option value="Valencia">Valencia</option>
-                <option value="Barcelona">Barcelona</option>
-                <option value="Madrid">Madrid</option>
-                <option value="Milano">Milano</option>
-                <option value="Athens">Athens</option>
+            <select name="flyFrom" onChange={handleFlyFrom} value={flyFrom}>
+                <option value="PRG">Prague</option>
+                <option value="BER">Berlin</option>
+                <option value="WAW">Warsaw</option>
+                <option value="PED">Pardubice</option>
             </select>
             
         </div>
