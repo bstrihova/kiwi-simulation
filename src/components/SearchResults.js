@@ -5,9 +5,9 @@ function SearchResults(props) {
   const { searchResults } = props;
   return (
     <div>
-      {searchResults.map((result) => {
+      {searchResults.map((result, index) => {
         return (
-          <div style={{ border: "1px solid black" }}>
+          <div style={{ border: "1px solid black" }} key={index}>
             <h3>Departure:</h3>
             {result.cityFrom}
             <h3>Arrival:</h3>
