@@ -4,6 +4,7 @@ import SearchResults from "./components/SearchResults";
 import Loader from "./components/Loader";
 import FlyFrom from "./components/FlyFrom";
 import FlyTo from "./components/FlyTo";
+import DirectFlightCheckbox from "./components/DirectFlightCheckbox";
 
 const App = () => {
   const [flyFrom, setFlyFrom] = React.useState("PRG");
@@ -13,10 +14,11 @@ const App = () => {
   const [dateFrom, setDateFrom] = React.useState("18/11/2020");
   const [dateTo, setDateTo] = React.useState("25/11/2020");
   const [searchResults, setSearchResults] = React.useState([]);
+  const [directFlights, setDirectFligts] = React.useState(false);
 
   React.useEffect(() => {
     flyFrom && fetchData();
-  }, [flyFrom, flyTo]);
+  }, [flyFrom, flyTo, directFlights]);
 
   const fetchData = async () => {
     const response = await fetch(
@@ -37,11 +39,17 @@ const App = () => {
     setSearchResults([]);
   };
 
+  const handleDirectFlights = () => {
+    setDirectFligts(e.target.value);
+    setSearchResults([]);
+  };
+
   return (
     <div className="App">
       <FlyFrom handleFlyFrom={handleFlyFrom} flyFrom={flyFrom} />
       <FlyTo handleFlyTo={handleFlyTo} flyTo={flyTo} />
-      {!searchResults.length ? (
+      <DirectFlightCheckbox directFlights={directFlights} onChange={handleDirectFlights}/>
+        {!searchResults.length ? (
         <Loader />
       ) : (
         <SearchResults searchResults={searchResults} />
