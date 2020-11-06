@@ -16,8 +16,8 @@ const App = () => {
   const [searchResults, setSearchResults] = React.useState([]);
   const [directFlights, setDirectFligts] = React.useState(false);
   const [stopovers, setStopovers] = React.useState(4);
-  const [page, setPage] = React.useState(0);
-  
+  const [page, setPage] = React.useState(5);
+  const [pagination, setPagination] = React.useState(5);
 
   React.useEffect(() => {
     flyFrom && fetchData();
@@ -50,17 +50,32 @@ const App = () => {
 
   return (
     <div className="App">
-      <FlyFrom handleFlyFrom={handleFlyFrom} flyFrom={flyFrom} />
-      <FlyTo handleFlyTo={handleFlyTo} flyTo={flyTo} />
-      <DirectFlightCheckbox
-        directFlights={directFlights}
-        onChange={handleDirectFlights}
-      />
-      <button onCLick={ () => {setPage(page + 5)} }>Next page:</button>
+      <nav>
+        <img src="https://images.kiwi.com/content-media/kiwi-logo.png" />
+      </nav>
+      <section className="searchBar">
+        <h1>Plan tomorrow's adventure today</h1>
+        <h4>Search the safest destinations. Book with flexibility.</h4>
+        <div className="searchInputs">
+          <FlyFrom handleFlyFrom={handleFlyFrom} flyFrom={flyFrom} />
+          <FlyTo handleFlyTo={handleFlyTo} flyTo={flyTo} />
+          <DirectFlightCheckbox
+            directFlights={directFlights}
+            onChange={handleDirectFlights}
+          />
+        </div>
+      </section>
       {!searchResults.length ? (
         <Loader />
       ) : (
-        <SearchResults searchResults={searchResults} page={page}/>
+        <SearchResults
+          searchResults={searchResults}
+          page={page}
+          pagination={pagination}
+          nextPage={() => {
+            setPage(page * 2);
+          }}
+        />
       )}
     </div>
   );

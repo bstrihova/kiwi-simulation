@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+html {
+  font-family: "Roboto", sans-serif;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -9,7 +13,7 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    animation: App-logo-spin infinite 3s ease-in;
   }
 }
 
@@ -35,4 +39,89 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.searchBar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background-image: url("https://www.kiwi.com/images/hero/hero-desktop.webp?v=3");
+  background-size: cover;
+  background-position: center;
+  padding: 4em;
+}
+
+nav {
+  background-color: white;
+  padding: 1em;
+}
+
+img {
+  width: 80px;
+}
+
+h1,
+h4 {
+  color: white;
+  width: 100%;
+  margin: 0;
+  margin-bottom: 1em;
+  font-weight: 400;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 200%;
+}
+
+.searchInputs {
+  display: flex;
+  background-color: white;
+  border-radius: 5px;
+  padding: 2em;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 80%;
+}
+
+.checkboxBox {
+  display: flex;
+  flex-direction: row;
+}
+
+.allSearchResults {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2em;
+  background-color: #f5f7f9;
+}
+
+.searchResult {
+  width: 90%;
+  border: 0.5px solid lightgray;
+  border-radius: 5px;
+  margin: 2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2em;
+  background-color: white;
+}
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.price {
+  font-weight: 900;
+  font-size: 2em;
+}
+
+.destination,
+.arrival {
+  margin: 1em;
 }

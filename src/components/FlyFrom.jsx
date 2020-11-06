@@ -1,11 +1,12 @@
 import React from 'react'
+import "../App.css";
 
 const FlyFrom = (props) => {
     const { handleFlyFrom, flyFrom } = props;
 
     return (
         <div>
-            <label htmlFor="flyFrom">Depart from:</label>
+            <label htmlFor="flyFrom">Depart from:  </label>
 
             <select name="flyFrom" onChange={handleFlyFrom} value={flyFrom}>
                 <option value="PRG">Prague</option>

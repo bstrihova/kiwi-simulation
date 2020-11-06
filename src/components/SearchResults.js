@@ -1,30 +1,48 @@
 import React from "react";
 import { DateTime } from "luxon";
+import ButtonNextPage from "./ButtonNextPage";
+import "../App.css";
 
 function SearchResults(props) {
-  const { searchResults, page } = props;
+  const { searchResults, page, pagination, nextPage } = props;
   return (
-    <div>
-      {searchResults.map((result, index) => {
-        return (
-          <div style={{ border: "1px solid black" }} key={index}>
-            <h3>Stopovers:</h3>
-            {result.route.length === 1 ? "direct" : result.route.length - 1}
-            <h3>Departure:</h3>
-            {result.cityFrom}
-            <h3>Arrival:</h3>
-            {result.cityTo}
-            <h3>Price:</h3>
-            {result.price}
-            <h3>Departure time:</h3>
-            {DateTime.fromMillis(result.dTime * 1000).toFormat("hh:mm")}
-            <h3>Arrival time:</h3>
-            {DateTime.fromMillis(result.aTime * 1000).toFormat("hh:mm")}
-          </div>
-           );
-      }).slice(page, page + 5)
-      }
-     
+    <div className="allSearchResults">
+      {searchResults
+        .map((result, index) => {
+          return (
+            <div key={index} className="searchResult">
+              <div className="leftColumn">
+                <div className="arrival">
+                  <strong>
+                    {DateTime.fromMillis(result.dTime * 1000).toFormat("hh:mm")}{" "}
+                  </strong>
+                  {result.cityFrom}
+                </div>
+                <div className="destination">
+                  {/* <h3>Departure time:</h3> */}
+
+                  {/* <h3>Arrival time:</h3> */}
+                  <strong>
+                    {DateTime.fromMillis(result.aTime * 1000).toFormat("hh:mm")}{" "}
+                  </strong>
+                  {result.cityTo}
+                </div>
+              </div>
+              <div className="stopovers">
+                <p>Stopovers:</p>
+                {result.route.length === 1 ? "direct" : result.route.length - 1}
+              </div>
+              <div className="price">{result.price} EUR</div>
+            </div>
+          );
+        })
+        .slice(0, page)}
+      {console.log("search results", searchResults.length, "page", page)}
+      {searchResults.length > page ? (
+        <ButtonNextPage nextPage={nextPage} pagination={pagination} />
+      ) : (
+        "No more flights"
+      )}
     </div>
   );
 }
