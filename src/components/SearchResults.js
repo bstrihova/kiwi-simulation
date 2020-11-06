@@ -8,6 +8,8 @@ function SearchResults(props) {
       {searchResults.map((result, index) => {
         return (
           <div style={{ border: "1px solid black" }} key={index}>
+            <h3>Stopovers:</h3>
+            {result.route.length === 1 ? "direct" : result.route.length - 1}
             <h3>Departure:</h3>
             {result.cityFrom}
             <h3>Arrival:</h3>
