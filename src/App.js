@@ -11,10 +11,11 @@ const App = () => {
   const [flyTo, setFlyTo] = React.useState("VLC");
   // const [dateFrom, setDateFrom] = React.useState("1/11/2020");
   // const [dateTo, setDateTo] = React.useState("2/11/2020");
-  const [dateFrom, setDateFrom] = React.useState("18/11/2020");
-  const [dateTo, setDateTo] = React.useState("25/11/2020");
+  const [dateFrom, setDateFrom] = React.useState("08/11/2020");
+  const [dateTo, setDateTo] = React.useState("20/11/2020");
   const [searchResults, setSearchResults] = React.useState([]);
   const [directFlights, setDirectFligts] = React.useState(false);
+  const [stopovers, setStopovers] = React.useState(4);
 
   React.useEffect(() => {
     flyFrom && fetchData();
@@ -22,7 +23,7 @@ const App = () => {
 
   const fetchData = async () => {
     const response = await fetch(
-      `https://api.skypicker.com/flights?flyFrom=${flyFrom}&to=${flyTo}&dateFrom=${dateFrom}&dateTo=${dateTo}&partner=test`
+      `https://api.skypicker.com/flights?flyFrom=${flyFrom}&to=${flyTo}&dateFrom=${dateFrom}&dateTo=${dateTo}&partner=test&max_stopovers=${stopovers}`
     );
     const data = await response.json();
     console.log(data.data);
@@ -40,7 +41,8 @@ const App = () => {
   };
 
   const handleDirectFlights = () => {
-    setDirectFligts(e.target.value);
+    setDirectFligts(!directFlights);
+    setStopovers(0);
     setSearchResults([]);
   };
 
@@ -48,8 +50,11 @@ const App = () => {
     <div className="App">
       <FlyFrom handleFlyFrom={handleFlyFrom} flyFrom={flyFrom} />
       <FlyTo handleFlyTo={handleFlyTo} flyTo={flyTo} />
-      <DirectFlightCheckbox directFlights={directFlights} onChange={handleDirectFlights}/>
-        {!searchResults.length ? (
+      <DirectFlightCheckbox
+        directFlights={directFlights}
+        onChange={handleDirectFlights}
+      />
+      {!searchResults.length ? (
         <Loader />
       ) : (
         <SearchResults searchResults={searchResults} />

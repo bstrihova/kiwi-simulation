@@ -11,7 +11,7 @@ const FlyTo = (props) => {
                 <option value="VLC">Valencia</option>
                 <option value="BCN">Barcelona</option>
                 <option value="MAD">Madrid</option>
-                <option value="MXP">Milano</option>
+                <option value="BGY">Milano</option>
                 <option value="ATH">Athens</option>
             </select>
             
