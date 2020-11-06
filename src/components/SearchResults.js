@@ -2,7 +2,7 @@ import React from "react";
 import { DateTime } from "luxon";
 
 function SearchResults(props) {
-  const { searchResults } = props;
+  const { searchResults, page } = props;
   return (
     <div>
       {searchResults.map((result, index) => {
@@ -21,8 +21,10 @@ function SearchResults(props) {
             <h3>Arrival time:</h3>
             {DateTime.fromMillis(result.aTime * 1000).toFormat("hh:mm")}
           </div>
-        );
-      })}
+           );
+      }).slice(page, page + 5)
+      }
+     
     </div>
   );
 }

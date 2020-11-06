@@ -16,6 +16,8 @@ const App = () => {
   const [searchResults, setSearchResults] = React.useState([]);
   const [directFlights, setDirectFligts] = React.useState(false);
   const [stopovers, setStopovers] = React.useState(4);
+  const [page, setPage] = React.useState(0);
+  
 
   React.useEffect(() => {
     flyFrom && fetchData();
@@ -54,10 +56,11 @@ const App = () => {
         directFlights={directFlights}
         onChange={handleDirectFlights}
       />
+      <button onCLick={ () => {setPage(page + 5)} }>Next page:</button>
       {!searchResults.length ? (
         <Loader />
       ) : (
-        <SearchResults searchResults={searchResults} />
+        <SearchResults searchResults={searchResults} page={page}/>
       )}
     </div>
   );
