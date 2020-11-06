@@ -42,7 +42,7 @@ const App = () => {
 
   const handleDirectFlights = () => {
     setDirectFligts(!directFlights);
-    setStopovers(0);
+    setStopovers(stopovers === 4 ? 0 : 4);
     setSearchResults([]);
   };
 
